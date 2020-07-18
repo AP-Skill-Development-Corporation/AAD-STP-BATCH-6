@@ -43,4 +43,10 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
 
     }
+
+    public void calendar(View view) {
+    }
+
+    public void time(View view) {
+    }
 }

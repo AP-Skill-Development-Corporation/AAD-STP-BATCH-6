@@ -12,5 +12,20 @@
         android:layout_height="wrap_content"
         android:text="alert"
         android:onClick="alert"/>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/calendar"
+        android:background="@null"
+        android:layout_gravity="center"
+        android:onClick="calendar"/>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/time"
+        android:background="@null"
+        android:layout_gravity="center"
+        android:onClick="time"/>
+
 
 </LinearLayout>
