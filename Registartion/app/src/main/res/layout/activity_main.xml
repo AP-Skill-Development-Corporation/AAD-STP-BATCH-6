@@ -6,7 +6,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
+    android:background="@drawable/product"
     tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:background="#90FFFFFF"
+        android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -20,15 +28,19 @@
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
+        android:padding="10dp"
         android:hint="name"
+        android:background="@drawable/shape"
         android:layout_marginTop="15dp"
         android:drawableRight="@drawable/ic_person"
         android:id="@+id/name"/>
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
+        android:padding="10dp"
         android:hint="email"
+        android:background="@drawable/shape"
         android:textColorHint="@color/colorAccent"
         android:layout_marginTop="15dp"
         android:inputType="textEmailAddress"
@@ -99,4 +111,5 @@
         android:onClick="register"/>
 
 
+</LinearLayout>
 </LinearLayout>
