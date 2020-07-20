@@ -4,11 +4,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -66,5 +68,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void time(View view) {
+        Calendar c = Calendar.getInstance();
+        final int hour = c.get(Calendar.HOUR);
+        final int mint = c.get(Calendar.MINUTE);
+        TimePickerDialog tpd = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                time.setText(hourOfDay+"::"+minute);
+            }
+        },hour,mint,true);
+        tpd.show();
     }
 }
