@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 time.setText(hourOfDay+"::"+minute);
             }
-        },hour,mint,true);
+        },hour,mint,false);
         tpd.show();
     }
 }
