@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setSmallIcon(R.drawable.ic_notify);
         builder.setDefaults(NotificationCompat.DEFAULT_ALL);
         builder.setContentIntent(pi);
+        builder.setAutoCancel(true);
         builder.addAction(R.drawable.ic_notify,"Reply",pi);
         manager.notify(0,builder.build());
     }
