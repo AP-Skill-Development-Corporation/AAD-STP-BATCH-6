@@ -5,6 +5,8 @@ import androidx.core.app.NotificationCompat;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -25,13 +27,16 @@ public class MainActivity extends AppCompatActivity {
     private void sendNotification() {
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this,"Demo");
+        Intent i = new Intent(this,MainActivity.class);
+        PendingIntent pi = PendingIntent.getActivity(this,0,i,
+                PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentTitle("Notification");
         builder.setContentText("This is my notification");
         builder.setSmallIcon(R.drawable.ic_notify);
         builder.setDefaults(NotificationCompat.DEFAULT_ALL);
-        //builder.addAction(R.drawable.ic_notify,"Reply",)
+        builder.setContentIntent(pi);
+        builder.addAction(R.drawable.ic_notify,"Reply",pi);
         manager.notify(0,builder.build());
-
     }
     private void createNotification() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
