@@ -1,0 +1,21 @@
+list view : 4.4 kitkat
+-> it is not highly customisable
+-> 300 contacts - 1contact * 1 kb = 300kb
+-> the interation is slow
+
+recyclerview : above kitkat 
+-> highly customisable
+-> 300 contacts - 1contact * 1 kb = 300(it occupies only the displayed data size)
+-> interaction is fast
+
+Steps to create a recyclerview :
+	1.Add dependency for the recyclerview.
+	2.Then you have to create the Recyclerview in layout file(XML) and give an ID.
+	3.In the java class we have to declare and intialise the recyclerview.
+	4.Create a seperate layout file(row.xml) for each row in the recyclerview.
+	5.Create an adapter class in the first package of java.(Where,How,How much)
+	6.Extend the adapter class with the recyclerview.
+	7.Connect the row.xml to adapterclass,then display the data in the declared views.
+	8.Create the reference for the adapter class in the main java file.
+	9.Pass the data from the Main java class to adapter using the constructor.
+	10.Set layout manager for the recyclerview to display the data in particular format.(Linear,Grid)

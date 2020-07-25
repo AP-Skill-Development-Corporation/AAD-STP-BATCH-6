@@ -12,6 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     Context ct;
+    String[] names;
+    int[] images;
+     public MyAdapter(MainActivity mainActivity, String[] names, int[] images) {
+        ct = mainActivity;
+        this.names = names;
+        this.images = images;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -21,12 +29,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+         holder.iv.setImageResource(images[position]);
+         holder.tv.setText(names[position]);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return names.length;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
