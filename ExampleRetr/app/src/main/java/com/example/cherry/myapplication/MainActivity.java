@@ -7,6 +7,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.security.Policy;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,8 +37,20 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 Toast.makeText(MainActivity.this,
                         ""+response.body(), Toast.LENGTH_SHORT).show();
+                String r = response.body();
+                try {
+                    JSONObject root = new JSONObject(r);
+                    JSONArray articles = root.getJSONArray("articles");
+                    for (int i = 0;i<articles.length();i++){
+                    JSONObject object =articles.getJSONObject(i);
+                    String title = object.getString("title");
+                    String link = object.getString("urlToImage");
+                    Pojo pojo = new Pojo(title,link);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 Log.i("key","failed to fetch");
