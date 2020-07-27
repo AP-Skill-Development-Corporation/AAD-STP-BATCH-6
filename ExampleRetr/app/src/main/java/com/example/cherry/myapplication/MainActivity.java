@@ -1,6 +1,7 @@
 package com.example.cherry.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.security.Policy;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,11 +25,13 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rv;
     Retrofit retrofit;
     MyInterface myInterface;
+    ArrayList<Pojo> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         rv = findViewById(R.id.rv);
+        list = new ArrayList<>();
         retrofit = new Retrofit.Builder().baseUrl("https://newsapi.org/v2/").
                 addConverterFactory(ScalarsConverterFactory.create()).build();
         myInterface = retrofit.create(MyInterface.class);
@@ -46,10 +50,14 @@ public class MainActivity extends AppCompatActivity {
                     String title = object.getString("title");
                     String link = object.getString("urlToImage");
                     Pojo pojo = new Pojo(title,link);
+                    list.add(pojo);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                MyAdapter adapter = new MyAdapter(MainActivity.this,list);
+                rv.setAdapter(adapter);
+                rv.setLayoutManager(new LinearLayoutManager(MainActivity.this));
             }
             @Override
             public void onFailure(Call<String> call, Throwable t) {
