@@ -47,9 +47,14 @@ public class MainActivity extends AppCompatActivity {
                     JSONArray articles = root.getJSONArray("articles");
                     for (int i = 0;i<articles.length();i++){
                     JSONObject object =articles.getJSONObject(i);
+                    JSONObject source = object.getJSONObject("source");
+                    String name = source.getString("name");
+                    String author = object.getString("author");
                     String title = object.getString("title");
+                    String desc = object.getString("description");
                     String link = object.getString("urlToImage");
-                    Pojo pojo = new Pojo(title,link);
+                    String date = object.getString("publishedAt");
+                    Pojo pojo = new Pojo(name,author,title,desc,link,date);
                     list.add(pojo);
                     }
                 } catch (Exception e) {
