@@ -13,12 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cherry.exampledb.Rdatabase.Rtable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.Viewholder> {
     Context ct;
-    ArrayList<Rtable> list;
+    List<Rtable> list;
 
-    public MyAdapter(Context ct, ArrayList<Rtable> list) {
+    public MyAdapter(Context ct, List<Rtable> list) {
         this.ct = ct;
         this.list = list;
     }
@@ -31,12 +32,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.Viewholder> {
 
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
-
+        holder.name.setText(list.get(position).getName());
+        holder.roll.setText(list.get(position).getRoll());
+        holder.number.setText(list.get(position).getNumber());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
     public class Viewholder extends RecyclerView.ViewHolder {

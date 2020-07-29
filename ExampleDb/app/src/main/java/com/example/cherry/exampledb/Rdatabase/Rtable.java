@@ -4,22 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "Student" )
+@Entity(tableName = "Student")
 public class Rtable {
 
-    @PrimaryKey
     @NonNull
-    int id;
+    @PrimaryKey
+    String roll;
 
-    String name,number,roll;
+    String name, number;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
