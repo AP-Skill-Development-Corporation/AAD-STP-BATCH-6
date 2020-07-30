@@ -1,6 +1,8 @@
 package com.example.cherry.exampledb;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.cherry.exampledb.Rdatabase.MyViewModel;
 import com.example.cherry.exampledb.Rdatabase.RDatabase;
 import com.example.cherry.exampledb.Rdatabase.Rtable;
 
@@ -18,9 +21,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     EditText name,roll,number;
-    RDatabase database;
+    /*RDatabase database;*/
+    public static MyViewModel viewModel;
     RecyclerView rv;
-    List<Rtable> list;
+    //List<Rtable> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,14 +33,20 @@ public class MainActivity extends AppCompatActivity {
         roll = findViewById(R.id.roll);
         number = findViewById(R.id.number);
         rv = findViewById(R.id.rv);
-        database = Room.databaseBuilder(this,RDatabase.class,"MYROOM")
+        /*database = Room.databaseBuilder(this,RDatabase.class,"MYROOM")
                 .allowMainThreadQueries().build();
-        list = database.rdao().getall();
-        MyAdapter adapter = new MyAdapter(this,list);
-        rv.setAdapter(adapter);
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        list = database.rdao().getall();*/
+        viewModel = new ViewModelProvider(this).get(MyViewModel.class);
+        /*This is to fetch the live data from the room database*/
+        viewModel.readData().observe(this, new Observer<List<Rtable>>() {
+            @Override
+            public void onChanged(List<Rtable> rtables) {
+                MyAdapter adapter = new MyAdapter(MainActivity.this, rtables);
+                rv.setAdapter(adapter);
+                rv.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+            }
+        });
     }
-
     public void submit(View view) {
         String n = name.getText().toString();
         String r = roll.getText().toString();
@@ -45,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         rtable.setName(n);
         rtable.setRoll(r);
         rtable.setNumber(num);
-        database.rdao().insert(rtable);
+        viewModel.insert(rtable);
         Toast.makeText(this, "Successfully saved", Toast.LENGTH_SHORT).show();
     }
 }

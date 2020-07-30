@@ -33,7 +33,7 @@ public class MyRepository {
             return null;
         }
     }
-    public LiveData<List<Rtable>> readAllDate(){
+    public LiveData<List<Rtable>> readAllData(){
         return list;
     }
     class DeleteTask extends AsyncTask<Rtable,Void,Void>{

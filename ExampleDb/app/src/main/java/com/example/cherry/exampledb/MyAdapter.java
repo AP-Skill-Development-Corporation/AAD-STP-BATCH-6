@@ -31,10 +31,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.Viewholder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Viewholder holder, int position) {
+    public void onBindViewHolder(@NonNull Viewholder holder, final int position) {
         holder.name.setText(list.get(position).getName());
         holder.roll.setText(list.get(position).getRoll());
         holder.number.setText(list.get(position).getNumber());
+        /*This is to delete the live data from the room database*/
+        holder.del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.viewModel.delete(list.get(position));
+            }
+        });
     }
 
     @Override
